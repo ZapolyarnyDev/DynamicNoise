@@ -1,4 +1,4 @@
-package me.zapolyarny.dynamicnoise.api.thread;
+package me.zapolyarny.dynamicnoise.lib.thread;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadFactory;

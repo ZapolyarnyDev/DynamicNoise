@@ -1,4 +1,4 @@
-package me.zapolyarny.dynamicnoise.core.helper;
+package me.zapolyarny.dynamicnoise.core.algorithm;
 
 import java.util.Random;
 

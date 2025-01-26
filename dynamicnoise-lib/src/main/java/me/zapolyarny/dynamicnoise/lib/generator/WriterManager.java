@@ -1,8 +1,8 @@
-package me.zapolyarny.dynamicnoise.api.generator;
+package me.zapolyarny.dynamicnoise.lib.generator;
 
-import me.zapolyarny.dynamicnoise.api.noise.Noise;
-import me.zapolyarny.dynamicnoise.api.noise.perlin.PerlinNoise;
-import me.zapolyarny.dynamicnoise.api.noise.simplex.SimplexNoise;
+import me.zapolyarny.dynamicnoise.lib.noise.Noise;
+import me.zapolyarny.dynamicnoise.lib.noise.perlin.PerlinNoise;
+import me.zapolyarny.dynamicnoise.lib.noise.simplex.SimplexNoise;
 import me.zapolyarny.dynamicnoise.core.info.PerlinNoiseInfo;
 import me.zapolyarny.dynamicnoise.core.info.SimplexNoiseInfo;
 import me.zapolyarny.dynamicnoise.core.writer.NoiseWriter;
@@ -10,7 +10,6 @@ import me.zapolyarny.dynamicnoise.core.writer.PerlinNoiseWriter;
 import me.zapolyarny.dynamicnoise.core.writer.SimplexNoiseWriter;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Map;
 
 class WriterManager {

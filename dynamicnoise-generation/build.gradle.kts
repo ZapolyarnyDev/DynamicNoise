@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "me.zapolyarny.dynamicnoise"
+group = "me.zapolyarny"
 version = "1.0"
 
 repositories {

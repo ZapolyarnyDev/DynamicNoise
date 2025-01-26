@@ -1,7 +1,6 @@
 package me.zapolyarny.dynamicnoise.core.writer;
 
-import me.zapolyarny.dynamicnoise.core.helper.SimplexNoiseAlgorithm;
-import me.zapolyarny.dynamicnoise.core.info.PerlinNoiseInfo;
+import me.zapolyarny.dynamicnoise.core.algorithm.SimplexNoiseAlgorithm;
 import me.zapolyarny.dynamicnoise.core.info.SimplexNoiseInfo;
 
 import java.util.Random;

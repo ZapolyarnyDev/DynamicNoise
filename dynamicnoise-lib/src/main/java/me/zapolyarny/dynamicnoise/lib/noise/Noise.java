@@ -1,4 +1,4 @@
-package me.zapolyarny.dynamicnoise.api.noise;
+package me.zapolyarny.dynamicnoise.lib.noise;
 
 /**
  * Interface for defining noise generators with configurable parameters.

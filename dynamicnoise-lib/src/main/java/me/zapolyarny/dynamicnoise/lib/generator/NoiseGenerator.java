@@ -1,19 +1,11 @@
-package me.zapolyarny.dynamicnoise.api.generator;
+package me.zapolyarny.dynamicnoise.lib.generator;
 
 import lombok.Data;
-import me.zapolyarny.dynamicnoise.api.map.NoiseMap;
-import me.zapolyarny.dynamicnoise.api.noise.Noise;
-import me.zapolyarny.dynamicnoise.api.noise.perlin.PerlinNoise;
-import me.zapolyarny.dynamicnoise.api.noise.simplex.SimplexNoise;
-import me.zapolyarny.dynamicnoise.api.thread.VirtualThreadExecutor;
-import me.zapolyarny.dynamicnoise.core.info.SimplexNoiseInfo;
+import me.zapolyarny.dynamicnoise.lib.map.NoiseMap;
+import me.zapolyarny.dynamicnoise.lib.noise.Noise;
+import me.zapolyarny.dynamicnoise.lib.thread.VirtualThreadExecutor;
 import me.zapolyarny.dynamicnoise.core.writer.NoiseWriter;
-import me.zapolyarny.dynamicnoise.core.writer.PerlinNoiseWriter;
-import me.zapolyarny.dynamicnoise.core.info.PerlinNoiseInfo;
-import me.zapolyarny.dynamicnoise.core.writer.SimplexNoiseWriter;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
