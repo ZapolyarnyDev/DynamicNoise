@@ -1,4 +1,4 @@
-package me.zapolyarny.dynamicnoise.core.writer;
+package io.github.zapolyarnydev.writer;
 
 public interface NoiseWriter {
 

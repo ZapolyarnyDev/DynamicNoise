@@ -1,4 +1,4 @@
 module DynamicNoise.dynamicnoise.generation {
-    exports me.zapolyarny.dynamicnoise.core.info;
-    exports me.zapolyarny.dynamicnoise.core.writer;
+    exports io.github.zapolyarnydev.info;
+    exports io.github.zapolyarnydev.writer;
 }

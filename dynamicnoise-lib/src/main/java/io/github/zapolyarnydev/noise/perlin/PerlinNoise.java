@@ -1,8 +1,8 @@
-package me.zapolyarny.dynamicnoise.lib.noise.perlin;
+package io.github.zapolyarnydev.noise.perlin;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import me.zapolyarny.dynamicnoise.lib.noise.Noise;
+import io.github.zapolyarnydev.noise.Noise;
 
 import java.util.Random;
 

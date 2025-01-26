@@ -2,8 +2,8 @@ plugins {
     id("java")
 }
 
-group = "me.zapolyarny"
-version = "1.0"
+group = "io.github.zapolyarnydev"
+version = "1.0.0"
 
 allprojects {
     repositories {

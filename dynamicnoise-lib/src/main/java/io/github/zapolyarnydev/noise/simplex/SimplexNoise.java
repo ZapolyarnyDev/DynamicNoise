@@ -1,7 +1,7 @@
-package me.zapolyarny.dynamicnoise.lib.noise.simplex;
+package io.github.zapolyarnydev.noise.simplex;
 
 import lombok.Data;
-import me.zapolyarny.dynamicnoise.lib.noise.Noise;
+import io.github.zapolyarnydev.noise.Noise;
 
 import java.util.Random;
 

@@ -1,7 +1,7 @@
-package me.zapolyarny.dynamicnoise.lib.map;
+package io.github.zapolyarnydev.map;
 
 import lombok.Getter;
-import me.zapolyarny.dynamicnoise.lib.thread.VirtualThreadExecutor;
+import io.github.zapolyarnydev.thread.VirtualThreadExecutor;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;

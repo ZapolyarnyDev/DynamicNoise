@@ -1,13 +1,13 @@
-package me.zapolyarny.dynamicnoise.lib.generator;
+package io.github.zapolyarnydev.generator;
 
-import me.zapolyarny.dynamicnoise.lib.noise.Noise;
-import me.zapolyarny.dynamicnoise.lib.noise.perlin.PerlinNoise;
-import me.zapolyarny.dynamicnoise.lib.noise.simplex.SimplexNoise;
-import me.zapolyarny.dynamicnoise.core.info.PerlinNoiseInfo;
-import me.zapolyarny.dynamicnoise.core.info.SimplexNoiseInfo;
-import me.zapolyarny.dynamicnoise.core.writer.NoiseWriter;
-import me.zapolyarny.dynamicnoise.core.writer.PerlinNoiseWriter;
-import me.zapolyarny.dynamicnoise.core.writer.SimplexNoiseWriter;
+import io.github.zapolyarnydev.noise.Noise;
+import io.github.zapolyarnydev.noise.perlin.PerlinNoise;
+import io.github.zapolyarnydev.noise.simplex.SimplexNoise;
+import io.github.zapolyarnydev.info.PerlinNoiseInfo;
+import io.github.zapolyarnydev.info.SimplexNoiseInfo;
+import io.github.zapolyarnydev.writer.NoiseWriter;
+import io.github.zapolyarnydev.writer.PerlinNoiseWriter;
+import io.github.zapolyarnydev.writer.SimplexNoiseWriter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;

@@ -1,10 +1,10 @@
-package me.zapolyarny.dynamicnoise.lib.generator;
+package io.github.zapolyarnydev.generator;
 
 import lombok.Data;
-import me.zapolyarny.dynamicnoise.lib.map.NoiseMap;
-import me.zapolyarny.dynamicnoise.lib.noise.Noise;
-import me.zapolyarny.dynamicnoise.lib.thread.VirtualThreadExecutor;
-import me.zapolyarny.dynamicnoise.core.writer.NoiseWriter;
+import io.github.zapolyarnydev.map.NoiseMap;
+import io.github.zapolyarnydev.noise.Noise;
+import io.github.zapolyarnydev.thread.VirtualThreadExecutor;
+import io.github.zapolyarnydev.writer.NoiseWriter;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;

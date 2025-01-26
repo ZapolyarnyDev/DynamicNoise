@@ -1,21 +1,20 @@
-package me.zapolyarny.dynamicnoise.core.writer;
+package io.github.zapolyarnydev.writer;
 
-import me.zapolyarny.dynamicnoise.core.algorithm.SimplexNoiseAlgorithm;
-import me.zapolyarny.dynamicnoise.core.info.SimplexNoiseInfo;
+import io.github.zapolyarnydev.algorithm.PerlinNoiseAlgorithm;
+import io.github.zapolyarnydev.info.PerlinNoiseInfo;
 
 import java.util.Random;
 
-public class SimplexNoiseWriter implements NoiseWriter {
+public class PerlinNoiseWriter implements NoiseWriter{
 
-    private SimplexNoiseInfo noiseInfo;
-
-    public SimplexNoiseWriter(SimplexNoiseInfo noiseInfo) {
+    private PerlinNoiseInfo noiseInfo;
+    public PerlinNoiseWriter(PerlinNoiseInfo noiseInfo){
         this.noiseInfo = noiseInfo;
     }
 
     @Override
     public void write(Object array) {
-        if (array instanceof double[] doubleArray) write1D(doubleArray);
+        if(array instanceof double[] doubleArray) write1D(doubleArray);
         else if (array instanceof double[][] doubleArray) write2D(doubleArray);
         else if (array instanceof double[][][] doubleArray) write3D(doubleArray);
     }
@@ -24,7 +23,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
         int length = array.length;
 
         Random random = new Random(noiseInfo.seed());
-        SimplexNoiseAlgorithm simplexNoise = new SimplexNoiseAlgorithm(random);
+        PerlinNoiseAlgorithm perlinNoise = new PerlinNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -37,7 +36,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
             double frequency = scale;
 
             for (int octave = 0; octave < octaves; octave++) {
-                noiseValue += simplexNoise.noise((x + noiseInfo.seed()) / frequency, 0) * amplitude;
+                noiseValue += perlinNoise.noise((x + noiseInfo.seed()) / frequency, 0) * amplitude;
                 amplitude *= persistence;
                 frequency *= lacunarity;
             }
@@ -51,7 +50,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
         int height = array[0].length;
 
         Random random = new Random(noiseInfo.seed());
-        SimplexNoiseAlgorithm simplexNoise = new SimplexNoiseAlgorithm(random);
+        PerlinNoiseAlgorithm perlinNoise = new PerlinNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -65,7 +64,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
                 double frequency = scale;
 
                 for (int octave = 0; octave < octaves; octave++) {
-                    noiseValue += simplexNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed()) / frequency) * amplitude;
+                    noiseValue += perlinNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed()) / frequency) * amplitude;
                     amplitude *= persistence;
                     frequency *= lacunarity;
                 }
@@ -81,7 +80,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
         int depth = array[0][0].length;
 
         Random random = new Random(noiseInfo.seed());
-        SimplexNoiseAlgorithm simplexNoise = new SimplexNoiseAlgorithm(random);
+        PerlinNoiseAlgorithm perlinNoise = new PerlinNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -96,7 +95,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
                     double frequency = scale;
 
                     for (int octave = 0; octave < octaves; octave++) {
-                        noiseValue += simplexNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed() + z) / frequency) * amplitude;
+                        noiseValue += perlinNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed() + z) / frequency) * amplitude;
                         amplitude *= persistence;
                         frequency *= lacunarity;
                     }
