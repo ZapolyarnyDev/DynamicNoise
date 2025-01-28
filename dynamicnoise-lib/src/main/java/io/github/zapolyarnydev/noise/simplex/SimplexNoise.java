@@ -8,11 +8,11 @@ import java.util.Random;
 /**
  * Implementation of the {@link Noise} interface using Simplex noise.
  *
- * <p>Simplex noise is a gradient-based noise algorithm, an improvement over Perlin noise,
+ * Simplex noise is a gradient-based noise algorithm, an improvement over Perlin noise,
  * offering better computational efficiency and fewer artifacts in higher dimensions.
- * It is widely used in procedural generation for applications like terrain, texture synthesis, and animations.</p>
+ * It is widely used in procedural generation for applications like terrain, texture synthesis, and animations.
  *
- * <p>The behavior of the Simplex noise generator can be customized with the following parameters:
+ * <p>The behavior of the Simplex noise generator can be customized with the following parameters:</p>
  * <ul>
  *     <li><strong>Seed</strong>: Determines the random pattern of the noise.</li>
  *     <li><strong>Scale</strong>: Controls the frequency of the noise; larger values result in smoother, larger features.</li>
@@ -20,19 +20,16 @@ import java.util.Random;
  *     <li><strong>Lacunarity</strong>: Controls the increase in frequency between successive octaves.</li>
  *     <li><strong>Persistence</strong>: Determines the amplitude of successive octaves.</li>
  * </ul>
- * </p>
  *
  * <p>This class includes a default constructor that initializes the noise generator with preset default values
  * and supports resetting parameters to defaults at any time.</p>
  *
- * <p>Example usage:
+ * <p>Example usage: </p>
  * <pre>{@code
  * SimplexNoise noise = new SimplexNoise();
  * noise.setSeed(12345); // Set a custom seed
  * noise.resetDefaults(); // Reset parameters to default values
  * }</pre>
- * </p>
- *
  */
 @Data
 public class SimplexNoise implements Noise {

@@ -13,18 +13,18 @@ import java.util.Random;
  * for tasks like terrain and texture creation. This implementation supports customization
  * through parameters such as seed, scale, octaves, lacunarity, and persistence.</p>
  *
- * <p>Key features:
+ * <p>Key features:</p>
  * <ul>
- *     <li>Seed: Determines the random pattern of the noise.</li>
- *     <li>Scale: Controls the frequency of the noise features.</li>
- *     <li>Octaves: Adds layers of detail by combining multiple noise frequencies.</li>
- *     <li>Lacunarity: Governs the frequency increase between octaves.</li>
- *     <li>Persistence: Controls the amplitude of successive octaves.</li>
+ *     <li><strong>Seed</strong>: Determines the random pattern of the noise.</li>
+ *     <li><strong>Scale</strong>: Controls the frequency of the noise features.</li>
+ *     <li><strong>Octaves</strong>: Adds layers of detail by combining multiple noise frequencies.</li>
+ *     <li><strong>Lacunarity</strong>: Governs the frequency increase between octaves.</li>
+ *     <li><strong>Persistence</strong>: Controls the amplitude of successive octaves.</li>
  * </ul>
- * </p>
  *
  * <p>Includes a default constructor for preset initialization and a parameterized constructor for customization.</p>
  */
+
 
 @Data
 @AllArgsConstructor

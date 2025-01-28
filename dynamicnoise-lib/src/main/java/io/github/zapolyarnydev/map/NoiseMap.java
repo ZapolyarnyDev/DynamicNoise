@@ -7,14 +7,12 @@ import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-
 /**
  * This class represents a noise map with support for 1D, 2D, and 3D arrays.
- * The map's dimension and size are configurable.
  */
 public class NoiseMap {
 
-    private Object map;
+    private final Object map;
 
     /**
      * The dimension of the noise map. Must be between 1 and 3.
@@ -25,7 +23,7 @@ public class NoiseMap {
     private final int dimensionSize;
 
     /**
-     * The size of the noise map. Must be 32 or more.
+     * The size of the noise map.
      *
      * @return The size of the noise map.
      */
@@ -33,34 +31,35 @@ public class NoiseMap {
     private final int mapSize;
 
     /**
-     * Creates a new noise map based on the given dimension size and map size.
-     * The array dimension must be between 1 and 3, and the map size must be 32 or more.
+     * Creates a new noise map from a given array.
+     * The array must be one of the following types: double[], double[][], or double[][][].
      *
-     * @param dimensionSize The dimension of the map (1, 2, or 3).
-     * @param mapSize The size of the arrays (32 or more).
-     * @throws IllegalArgumentException If the dimension size is not between 1 and 3, or if the map size is less than 32.
+     * @param map The array to initialize the noise map with.
+     * @throws IllegalArgumentException If the array is not of type double[], double[][], or double[][][].
      */
-    public NoiseMap(int dimensionSize, int mapSize) throws IllegalArgumentException {
-        if (dimensionSize < 1 || dimensionSize > 3) {
-            throw new IllegalArgumentException("Invalid map dimension: " + dimensionSize + ". Dimension must be between 1 and 3.");
+    public NoiseMap(Object map) throws IllegalArgumentException {
+        switch (map) {
+            case double[] doubles -> {
+                this.map = map;
+                this.dimensionSize = 1;
+                this.mapSize = doubles.length;
+            }
+            case double[][] doubles -> {
+                this.map = map;
+                this.dimensionSize = 2;
+                this.mapSize = doubles.length;
+            }
+            case double[][][] doubles -> {
+                this.map = map;
+                this.dimensionSize = 3;
+                this.mapSize = doubles.length;
+            }
+            case null, default ->
+                    throw new IllegalArgumentException("Invalid map type. Map must be of type double[], double[][], or double[][][]");
         }
+
         if (mapSize < 32) {
             throw new IllegalArgumentException("Invalid map size: " + mapSize + ". Map size must be 32 or more.");
-        }
-
-        this.dimensionSize = dimensionSize;
-        this.mapSize = mapSize;
-
-        switch (dimensionSize) {
-            case 1:
-                map = new double[mapSize];
-                break;
-            case 2:
-                map = new double[mapSize][mapSize];
-                break;
-            case 3:
-                map = new double[mapSize][mapSize][mapSize];
-                break;
         }
     }
 
@@ -77,37 +76,35 @@ public class NoiseMap {
 
     /**
      * Normalizes the values in the map to the specified range.
-     * <p>
-     * If all values in the map are the same, they will be set to the lowerBound.
      *
      * @param lowerBound The lower bound of the normalization range.
      * @param upperBound The upper bound of the normalization range.
      * @throws IllegalArgumentException If the lowerBound is greater than the upperBound.
      */
-    public void normalize(double lowerBound, double upperBound){
-        if(lowerBound > upperBound){
+    public void normalize(double lowerBound, double upperBound) {
+        if (lowerBound > upperBound) {
             throw new IllegalArgumentException("Lower bound must be less than upper bound.");
         }
 
-        if(map instanceof double[]) normalize1D(lowerBound, upperBound);
-        else if (map instanceof double[][]) normalize2D(lowerBound, upperBound);
-        else if (map instanceof double[][][]) normalize3D(lowerBound, upperBound);
+        if (map instanceof double[]) {
+            normalize1D(lowerBound, upperBound);
+        } else if (map instanceof double[][]) {
+            normalize2D(lowerBound, upperBound);
+        } else if (map instanceof double[][][]) {
+            normalize3D(lowerBound, upperBound);
+        }
     }
 
-    private void normalize1D(double lowerBound, double upperBound){
-        double min = Double.MAX_VALUE;
-        double max = Double.MIN_VALUE;
+    private void normalize1D(double lowerBound, double upperBound) {
         double[] map1D = (double[]) map;
-
         if (map1D.length == 0) return;
-        if (lowerBound == upperBound) {
+
+        double min = Arrays.stream(map1D).min().orElse(Double.MAX_VALUE);
+        double max = Arrays.stream(map1D).max().orElse(Double.MIN_VALUE);
+
+        if (min == max) {
             Arrays.fill(map1D, lowerBound);
             return;
-        }
-
-        for (double value : map1D) {
-            min = Math.min(min, value);
-            max = Math.max(max, value);
         }
 
         for (int i = 0; i < map1D.length; i++) {
@@ -115,24 +112,25 @@ public class NoiseMap {
         }
     }
 
-    private void normalize2D(double lowerBound, double upperBound){
+    private void normalize2D(double lowerBound, double upperBound) {
+        double[][] map2D = (double[][]) map;
+        if (map2D.length == 0) return;
+
         double min = Double.MAX_VALUE;
         double max = Double.MIN_VALUE;
-        double[][] map2D = (double[][]) map;
-
-        if (map2D.length == 0) return;
-        if (lowerBound == upperBound) {
-            for (double[] doubles : map2D) {
-                Arrays.fill(doubles, lowerBound);
-            }
-            return;
-        }
 
         for (double[] row : map2D) {
             for (double value : row) {
                 min = Math.min(min, value);
                 max = Math.max(max, value);
             }
+        }
+
+        if (min == max) {
+            for (double[] row : map2D) {
+                Arrays.fill(row, lowerBound);
+            }
+            return;
         }
 
         for (int i = 0; i < map2D.length; i++) {
@@ -142,20 +140,12 @@ public class NoiseMap {
         }
     }
 
-    private void normalize3D(double lowerBound, double upperBound){
+    private void normalize3D(double lowerBound, double upperBound) {
+        double[][][] map3D = (double[][][]) map;
+        if (map3D.length == 0) return;
+
         double min = Double.MAX_VALUE;
         double max = Double.MIN_VALUE;
-        double[][][] map3D = (double[][][]) map;
-
-        if (map3D.length == 0) return;
-        if (lowerBound == upperBound) {
-            for (double[][] doubles : map3D) {
-                for (double[] aDouble : doubles) {
-                    Arrays.fill(aDouble, lowerBound);
-                }
-            }
-            return;
-        }
 
         for (double[][] slice : map3D) {
             for (double[] row : slice) {
@@ -164,6 +154,15 @@ public class NoiseMap {
                     max = Math.max(max, value);
                 }
             }
+        }
+
+        if (min == max) {
+            for (double[][] slice : map3D) {
+                for (double[] row : slice) {
+                    Arrays.fill(row, lowerBound);
+                }
+            }
+            return;
         }
 
         for (int i = 0; i < map3D.length; i++) {
@@ -177,18 +176,13 @@ public class NoiseMap {
 
     /**
      * Asynchronously normalizes the noise map using a virtual stream.
-     * Recommended for applications that require a high level of parallelism.
-     * This method leverages Java Virtual Threads for lightweight concurrency
      *
      * @param lowerBound The lower bound of the normalization range.
      * @param upperBound The upper bound of the normalization range.
      * @return A CompletableFuture that completes when normalization is done.
-     * @throws IllegalArgumentException If the lowerBound is greater than the upperBound.
      */
-
     public CompletableFuture<Void> normalizeAsync(double lowerBound, double upperBound) {
         Executor executor = new VirtualThreadExecutor();
         return CompletableFuture.runAsync(() -> normalize(lowerBound, upperBound), executor);
     }
-
 }

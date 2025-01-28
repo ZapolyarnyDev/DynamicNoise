@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "io.github.zapolyarnydev"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -22,4 +22,12 @@ tasks.jar {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+    withSourcesJar()
 }
