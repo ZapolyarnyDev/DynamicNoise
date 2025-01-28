@@ -1,8 +1,8 @@
 # DynamicNoise
 <img src="./images/noise-preview.png" width="575"/>
 
-![GitHub Release](https://img.shields.io/github/v/release/ZapolyarnyDev/DynamicNoise?style=for-the-badge&color=%235789BF&link=https%3A%2F%2Fgithub.com%2FZapolyarnyDev%2FDynamicNoise%2Freleases)
-![GitHub License](https://img.shields.io/github/license/ZapolyarnyDev/DynamicNoise?style=for-the-badge&color=%2347D524&link=..%2FLICENSE)
+[![GitHub Release](https://img.shields.io/github/v/release/ZapolyarnyDev/DynamicNoise?style=for-the-badge&color=%235789BF&link=https%3A%2F%2Fgithub.com%2FZapolyarnyDev%2FDynamicNoise%2Freleases)](https://github.com/ZapolyarnyDev/DynamicNoise/releases)
+[![GitHub License](https://img.shields.io/github/license/ZapolyarnyDev/DynamicNoise?style=for-the-badge&color=%2347D524&link=..%2FLICENSE)](LICENSE)
 
 DynamicNoise is a flexible and lightweight library for procedural generation of 1D, 2D, and 3D noise maps.
 Perfect for game developers, visual effects artists, or anyone working with procedural content generation.
