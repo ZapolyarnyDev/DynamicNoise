@@ -53,10 +53,10 @@ Let's generate a two-dimensional 500X400 map (All library methods are described 
 ```java
 NoiseMap gameMap = new NoiseMap(new double[500][400]);
 Noise noise = new SimplexNoise();
-noise.setOctaves(8);
-noise.setScale(35);
-noise.setLacunarity(2.35);
-noise.setPersistence(1.4);
+noise.setOctaves(6);
+noise.setScale(5);
+noise.setLacunarity(3);
+noise.setPersistence(1.32);
 NoiseGenerator generator = new NoiseGenerator(noise);
 generator.generateForMap(gameMap, noise, 0, 1);
 double[][] doubles = gameMap.getDoubleArray();
