@@ -65,7 +65,7 @@ display2DNoise(doubles); // Change to your own rendering method
 
 ### Output result:
 
-<img src="./images/noise-preview.png" width="445"/>
+<img src="./images/example-noise.png" width="445"/>
 
 ## License
 This project is licensed under the [MIT License](https://github.com/ZapolyarnyDev/DynamicNoise/blob/main/LICENSE).
