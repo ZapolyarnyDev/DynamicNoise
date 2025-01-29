@@ -20,7 +20,7 @@ repositories {
 dependencies {
     compileOnly("org.jetbrains:annotations:16.0.1")
     annotationProcessor("org.jetbrains:annotations:16.0.1")
-    api(files("../dynamicnoise-generation/build/libs/dynamicnoise-generation-1.0.1.jar"))
+    implementation(files("../dynamicnoise-generation/build/libs/dynamicnoise-generation-1.0.1.jar"))
 }
 
 tasks.compileJava{

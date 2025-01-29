@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class PerlinNoiseWriter implements NoiseWriter{
 
-    private PerlinNoiseInfo noiseInfo;
+    private final PerlinNoiseInfo noiseInfo;
     public PerlinNoiseWriter(PerlinNoiseInfo noiseInfo){
         this.noiseInfo = noiseInfo;
     }

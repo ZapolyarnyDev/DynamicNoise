@@ -4,20 +4,20 @@ import java.util.Random;
 
 public class PerlinNoiseAlgorithm {
 
-    private int[] p;
-    private int[] permutation;
-    private Random random;
+    private final int[] permutationTable;
+    private final int[] permutation;
+    private final Random random;
 
     public PerlinNoiseAlgorithm(Random random) {
         this.random = random;
-        p = new int[512];
+        permutationTable = new int[512];
         permutation = new int[256];
         for (int i = 0; i < 256; i++) {
             permutation[i] = i;
         }
         shufflePermutation();
-        System.arraycopy(permutation, 0, p, 0, 256);
-        System.arraycopy(permutation, 0, p, 256, 256);
+        System.arraycopy(permutation, 0, permutationTable, 0, 256);
+        System.arraycopy(permutation, 0, permutationTable, 256, 256);
     }
 
     private void shufflePermutation() {
@@ -52,10 +52,10 @@ public class PerlinNoiseAlgorithm {
         double u = fade(xf);
         double v = fade(yf);
 
-        int aa = p[X + p[Y]];
-        int ab = p[X + p[Y + 1]];
-        int ba = p[X + 1 + p[Y]];
-        int bb = p[X + 1 + p[Y + 1]];
+        int aa = permutationTable[X + permutationTable[Y]];
+        int ab = permutationTable[X + permutationTable[Y + 1]];
+        int ba = permutationTable[X + 1 + permutationTable[Y]];
+        int bb = permutationTable[X + 1 + permutationTable[Y + 1]];
 
         double x1 = lerp(grad(aa, xf, yf), grad(ba, xf - 1, yf), u);
         double x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);

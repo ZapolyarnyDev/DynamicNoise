@@ -1,15 +1,16 @@
 package io.github.zapolyarnydev.writer;
 
 import io.github.zapolyarnydev.algorithm.SimplexNoiseAlgorithm;
-import io.github.zapolyarnydev.info.SimplexNoiseInfo;
+import io.github.zapolyarnydev.algorithm.ValueNoiseAlgorithm;
+import io.github.zapolyarnydev.info.ValueNoiseInfo;
 
 import java.util.Random;
 
-public class SimplexNoiseWriter implements NoiseWriter {
+public class ValueNoiseWriter implements NoiseWriter{
 
-    private final SimplexNoiseInfo noiseInfo;
+    private final ValueNoiseInfo noiseInfo;
 
-    public SimplexNoiseWriter(SimplexNoiseInfo noiseInfo) {
+    public ValueNoiseWriter(ValueNoiseInfo noiseInfo) {
         this.noiseInfo = noiseInfo;
     }
 
@@ -24,7 +25,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
         int length = array.length;
 
         Random random = new Random(noiseInfo.seed());
-        SimplexNoiseAlgorithm simplexNoise = new SimplexNoiseAlgorithm(random);
+        ValueNoiseAlgorithm simplexNoise = new ValueNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -51,7 +52,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
         int height = array[0].length;
 
         Random random = new Random(noiseInfo.seed());
-        SimplexNoiseAlgorithm simplexNoise = new SimplexNoiseAlgorithm(random);
+        ValueNoiseAlgorithm simplexNoise = new ValueNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -81,7 +82,7 @@ public class SimplexNoiseWriter implements NoiseWriter {
         int depth = array[0][0].length;
 
         Random random = new Random(noiseInfo.seed());
-        SimplexNoiseAlgorithm simplexNoise = new SimplexNoiseAlgorithm(random);
+        ValueNoiseAlgorithm simplexNoise = new ValueNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();

@@ -9,20 +9,20 @@ public class SimplexNoiseAlgorithm {
             {1, 0}, {-1, 0}, {0, 1}, {0, -1}
     };
 
-    private static final double F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
-    private static final double G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+    private static final double SKEW_FACTOR = 0.5 * (Math.sqrt(3.0) - 1.0);
+    private static final double UNSKEW_FACTOR = (3.0 - Math.sqrt(3.0)) / 6.0;
 
-    private int[] perm;
+    private final int[] permutation;
 
     public SimplexNoiseAlgorithm(Random random) {
-        perm = new int[512];
+        permutation = new int[512];
         int[] p = new int[256];
         for (int i = 0; i < 256; i++) {
             p[i] = i;
         }
         shufflePermutation(p, random);
-        System.arraycopy(p, 0, perm, 0, 256);
-        System.arraycopy(p, 0, perm, 256, 256);
+        System.arraycopy(p, 0, permutation, 0, 256);
+        System.arraycopy(p, 0, permutation, 256, 256);
     }
 
     private void shufflePermutation(int[] p, Random random) {
@@ -38,16 +38,16 @@ public class SimplexNoiseAlgorithm {
         return grad[0] * x + grad[1] * y;
     }
 
-    private static int fastFloor(double x) {
-        return x > 0 ? (int) x : (int) x - 1;
+    private static int fastFloor(double value) {
+        return value > 0 ? (int) value : (int) value - 1;
     }
 
     public double noise(double x, double y) {
-        double s = (x + y) * F2;
+        double s = (x + y) * SKEW_FACTOR;
         int i = fastFloor(x + s);
         int j = fastFloor(y + s);
 
-        double t = (i + j) * G2;
+        double t = (i + j) * UNSKEW_FACTOR;
         double x0 = x - (i - t);
         double y0 = y - (j - t);
 
@@ -58,14 +58,14 @@ public class SimplexNoiseAlgorithm {
             i1 = 0; j1 = 1;
         }
 
-        double x1 = x0 - i1 + G2;
-        double y1 = y0 - j1 + G2;
-        double x2 = x0 - 1.0 + 2.0 * G2;
-        double y2 = y0 - 1.0 + 2.0 * G2;
+        double x1 = x0 - i1 + UNSKEW_FACTOR;
+        double y1 = y0 - j1 + UNSKEW_FACTOR;
+        double x2 = x0 - 1.0 + 2.0 * UNSKEW_FACTOR;
+        double y2 = y0 - 1.0 + 2.0 * UNSKEW_FACTOR;
 
-        int gi0 = perm[(i + perm[j & 255]) & 255] % 8;
-        int gi1 = perm[(i + i1 + perm[(j + j1) & 255]) & 255] % 8;
-        int gi2 = perm[(i + 1 + perm[(j + 1) & 255]) & 255] % 8;
+        int gi0 = permutation[(i + permutation[j & 255]) & 255] % 8;
+        int gi1 = permutation[(i + i1 + permutation[(j + j1) & 255]) & 255] % 8;
+        int gi2 = permutation[(i + 1 + permutation[(j + 1) & 255]) & 255] % 8;
 
         double t0 = 0.5 - x0 * x0 - y0 * y0;
         double n0;
