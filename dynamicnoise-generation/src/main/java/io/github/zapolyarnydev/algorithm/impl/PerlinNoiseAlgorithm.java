@@ -1,8 +1,10 @@
-package io.github.zapolyarnydev.algorithm;
+package io.github.zapolyarnydev.algorithm.impl;
+
+import io.github.zapolyarnydev.algorithm.NoiseAlgorithm;
 
 import java.util.Random;
 
-public class PerlinNoiseAlgorithm {
+public class PerlinNoiseAlgorithm implements NoiseAlgorithm {
 
     private final int[] permutationTable;
     private final int[] permutation;
@@ -44,6 +46,7 @@ public class PerlinNoiseAlgorithm {
         return a + t * (b - a);
     }
 
+    @Override
     public double noise(double x, double y) {
         int X = (int) Math.floor(x) & 255;
         int Y = (int) Math.floor(y) & 255;

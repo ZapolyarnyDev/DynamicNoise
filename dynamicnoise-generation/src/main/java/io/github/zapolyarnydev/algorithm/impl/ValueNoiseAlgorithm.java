@@ -1,8 +1,10 @@
-package io.github.zapolyarnydev.algorithm;
+package io.github.zapolyarnydev.algorithm.impl;
+
+import io.github.zapolyarnydev.algorithm.NoiseAlgorithm;
 
 import java.util.Random;
 
-public class ValueNoiseAlgorithm {
+public class ValueNoiseAlgorithm implements NoiseAlgorithm {
 
     private final int[] permutationTable;
 
@@ -34,6 +36,7 @@ public class ValueNoiseAlgorithm {
         return value > 0 ? (int) value : (int) value - 1;
     }
 
+    @Override
     public double noise(double x, double y) {
         int X = fastFloor(x) & 255;
         int Y = fastFloor(y) & 255;

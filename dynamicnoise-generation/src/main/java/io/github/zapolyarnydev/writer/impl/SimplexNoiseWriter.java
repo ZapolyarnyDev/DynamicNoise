@@ -1,6 +1,6 @@
 package io.github.zapolyarnydev.writer.impl;
 
-import io.github.zapolyarnydev.algorithm.SimplexNoiseAlgorithm;
+import io.github.zapolyarnydev.algorithm.impl.SimplexNoiseAlgorithm;
 import io.github.zapolyarnydev.info.SimplexNoiseInfo;
 import io.github.zapolyarnydev.writer.NoiseWriter;
 

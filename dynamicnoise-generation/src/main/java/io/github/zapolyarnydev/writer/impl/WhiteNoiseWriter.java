@@ -1,7 +1,6 @@
 package io.github.zapolyarnydev.writer.impl;
 
-import io.github.zapolyarnydev.algorithm.ValueNoiseAlgorithm;
-import io.github.zapolyarnydev.algorithm.WhiteNoiseAlgorithm;
+import io.github.zapolyarnydev.algorithm.impl.WhiteNoiseAlgorithm;
 import io.github.zapolyarnydev.info.WhiteNoiseInfo;
 import io.github.zapolyarnydev.writer.NoiseWriter;
 

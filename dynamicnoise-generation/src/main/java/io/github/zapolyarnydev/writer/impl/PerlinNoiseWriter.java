@@ -1,6 +1,6 @@
 package io.github.zapolyarnydev.writer.impl;
 
-import io.github.zapolyarnydev.algorithm.PerlinNoiseAlgorithm;
+import io.github.zapolyarnydev.algorithm.impl.PerlinNoiseAlgorithm;
 import io.github.zapolyarnydev.info.PerlinNoiseInfo;
 import io.github.zapolyarnydev.writer.NoiseWriter;
 

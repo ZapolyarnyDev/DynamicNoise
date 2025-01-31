@@ -1,8 +1,10 @@
-package io.github.zapolyarnydev.algorithm;
+package io.github.zapolyarnydev.algorithm.impl;
+
+import io.github.zapolyarnydev.algorithm.NoiseAlgorithm;
 
 import java.util.Random;
 
-public class SimplexNoiseAlgorithm {
+public class SimplexNoiseAlgorithm implements NoiseAlgorithm {
 
     private static final int[][] GRADIENTS = {
             {1, 1}, {-1, 1}, {1, -1}, {-1, -1},
@@ -42,6 +44,7 @@ public class SimplexNoiseAlgorithm {
         return value > 0 ? (int) value : (int) value - 1;
     }
 
+    @Override
     public double noise(double x, double y) {
         double s = (x + y) * SKEW_FACTOR;
         int i = fastFloor(x + s);
