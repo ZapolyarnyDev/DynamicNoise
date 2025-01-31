@@ -1,12 +1,12 @@
-package io.github.zapolyarnydev.writer;
+package io.github.zapolyarnydev.writer.impl;
 
-import io.github.zapolyarnydev.algorithm.SimplexNoiseAlgorithm;
 import io.github.zapolyarnydev.algorithm.ValueNoiseAlgorithm;
 import io.github.zapolyarnydev.info.ValueNoiseInfo;
+import io.github.zapolyarnydev.writer.NoiseWriter;
 
 import java.util.Random;
 
-public class ValueNoiseWriter implements NoiseWriter{
+public class ValueNoiseWriter implements NoiseWriter {
 
     private final ValueNoiseInfo noiseInfo;
 
@@ -25,7 +25,7 @@ public class ValueNoiseWriter implements NoiseWriter{
         int length = array.length;
 
         Random random = new Random(noiseInfo.seed());
-        ValueNoiseAlgorithm simplexNoise = new ValueNoiseAlgorithm(random);
+        ValueNoiseAlgorithm valueNoise = new ValueNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -38,7 +38,7 @@ public class ValueNoiseWriter implements NoiseWriter{
             double frequency = scale;
 
             for (int octave = 0; octave < octaves; octave++) {
-                noiseValue += simplexNoise.noise((x + noiseInfo.seed()) / frequency, 0) * amplitude;
+                noiseValue += valueNoise.noise((x + noiseInfo.seed()) / frequency, 0) * amplitude;
                 amplitude *= persistence;
                 frequency *= lacunarity;
             }
@@ -52,7 +52,7 @@ public class ValueNoiseWriter implements NoiseWriter{
         int height = array[0].length;
 
         Random random = new Random(noiseInfo.seed());
-        ValueNoiseAlgorithm simplexNoise = new ValueNoiseAlgorithm(random);
+        ValueNoiseAlgorithm valueNoise = new ValueNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -66,7 +66,7 @@ public class ValueNoiseWriter implements NoiseWriter{
                 double frequency = scale;
 
                 for (int octave = 0; octave < octaves; octave++) {
-                    noiseValue += simplexNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed()) / frequency) * amplitude;
+                    noiseValue += valueNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed()) / frequency) * amplitude;
                     amplitude *= persistence;
                     frequency *= lacunarity;
                 }
@@ -82,7 +82,7 @@ public class ValueNoiseWriter implements NoiseWriter{
         int depth = array[0][0].length;
 
         Random random = new Random(noiseInfo.seed());
-        ValueNoiseAlgorithm simplexNoise = new ValueNoiseAlgorithm(random);
+        ValueNoiseAlgorithm valueNoise = new ValueNoiseAlgorithm(random);
 
         double scale = noiseInfo.scale();
         int octaves = noiseInfo.octaves();
@@ -97,7 +97,7 @@ public class ValueNoiseWriter implements NoiseWriter{
                     double frequency = scale;
 
                     for (int octave = 0; octave < octaves; octave++) {
-                        noiseValue += simplexNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed() + z) / frequency) * amplitude;
+                        noiseValue += valueNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed() + z) / frequency) * amplitude;
                         amplitude *= persistence;
                         frequency *= lacunarity;
                     }
