@@ -185,4 +185,51 @@ public class NoiseMap {
         Executor executor = new VirtualThreadExecutor();
         return CompletableFuture.runAsync(() -> normalize(lowerBound, upperBound), executor);
     }
+
+    /**
+     * Combines this noise map with another noise map using a specified weight.
+     * The other noise map must have the same dimensions and size.
+     *
+     * @param other  The noise map to combine with.
+     * @param weight The weight factor for combining. Can be negative or positive.
+     * @throws IllegalArgumentException If the dimensions or sizes do not match.
+     */
+    public void combine(NoiseMap other, double weight) {
+        if (this.dimensionSize != other.dimensionSize || this.mapSize != other.mapSize) {
+            throw new IllegalArgumentException("Noise maps must have the same dimensions and size to combine.");
+        }
+
+        if (map instanceof double[] map1D && other.map instanceof double[] other1D) {
+            for (int i = 0; i < map1D.length; i++) {
+                map1D[i] += other1D[i] * weight;
+            }
+        } else if (map instanceof double[][] map2D && other.map instanceof double[][] other2D) {
+            for (int i = 0; i < map2D.length; i++) {
+                for (int j = 0; j < map2D[i].length; j++) {
+                    map2D[i][j] += other2D[i][j] * weight;
+                }
+            }
+        } else if (map instanceof double[][][] map3D && other.map instanceof double[][][] other3D) {
+            for (int i = 0; i < map3D.length; i++) {
+                for (int j = 0; j < map3D[i].length; j++) {
+                    for (int k = 0; k < map3D[i][j].length; k++) {
+                        map3D[i][j][k] += other3D[i][j][k] * weight;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Asynchronously combines this noise map with another noise map using a specified weight.
+     * The other noise map must have the same dimensions and size.
+     *
+     * @param other  The noise map to combine with.
+     * @param weight The weight factor for combining. Can be negative or positive.
+     * @return A CompletableFuture that completes when combination is done.
+     */
+    public CompletableFuture<Void> combineAsync(NoiseMap other, double weight) {
+        Executor executor = new VirtualThreadExecutor();
+        return CompletableFuture.runAsync(() -> combine(other, weight), executor);
+    }
 }

@@ -92,7 +92,7 @@ public class NoiseGenerator {
         if (lowerBound > upperBound) {
             throw new IllegalArgumentException("Lower bound cannot be greater than upper bound.");
         }
-        NoiseWriter writer = WriterManager.getWriter(defaultNoise);
+        NoiseWriter writer = WriterManager.getWriter(noise);
         writer.write(map.getDoubleArray());
         map.normalize(lowerBound, upperBound);
     }
