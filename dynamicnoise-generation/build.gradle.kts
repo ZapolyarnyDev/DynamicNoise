@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "io.github.zapolyarnydev"
-version = "1.0.1"
+version = "1.1.0"
 
 repositories {
     mavenCentral()

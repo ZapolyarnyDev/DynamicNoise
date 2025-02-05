@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.zapolyarnydev"
-version = "1.0.1"
+version = "1.1.0"
 
 tasks.test {
     useJUnitPlatform()
@@ -20,7 +20,7 @@ repositories {
 dependencies {
     compileOnly("org.jetbrains:annotations:16.0.1")
     annotationProcessor("org.jetbrains:annotations:16.0.1")
-    implementation(files("../dynamicnoise-generation/build/libs/dynamicnoise-generation-1.0.1.jar"))
+    implementation(files("../dynamicnoise-generation/build/libs/dynamicnoise-generation-1.1.0.jar"))
 }
 
 tasks.compileJava{
@@ -38,7 +38,7 @@ tasks.jar {
 
 mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    coordinates("io.github.zapolyarnydev", "dynamicnoise-lib", "1.0.1")
+    coordinates("io.github.zapolyarnydev", "dynamicnoise-lib", "1.1.0")
 
     pom {
         name.set("DynamicNoise")
