@@ -20,6 +20,8 @@ Supported dimensions of the maps:
 List of noises:
 - Perlin noise
 - Simplex noise
+- Value noise
+- White noise
 
 ## Install
 
