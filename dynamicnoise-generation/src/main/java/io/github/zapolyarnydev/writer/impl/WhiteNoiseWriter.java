@@ -1,6 +1,5 @@
 package io.github.zapolyarnydev.writer.impl;
 
-import io.github.zapolyarnydev.algorithm.impl.WhiteNoiseAlgorithm;
 import io.github.zapolyarnydev.info.WhiteNoiseInfo;
 import io.github.zapolyarnydev.writer.NoiseWriter;
 
@@ -14,100 +13,41 @@ public class WhiteNoiseWriter implements NoiseWriter {
         this.noiseInfo = info;
     }
 
-
     @Override
     public void write(Object array) {
-        if (array instanceof double[] doubleArray) write1D(doubleArray);
-        else if (array instanceof double[][] doubleArray) write2D(doubleArray);
-        else if (array instanceof double[][][] doubleArray) write3D(doubleArray);
+        if (array instanceof double[] doubleArray) {
+            write1D(doubleArray);
+        } else if (array instanceof double[][] doubleArray) {
+            write2D(doubleArray);
+        } else if (array instanceof double[][][] doubleArray) {
+            write3D(doubleArray);
+        }
     }
 
     private void write1D(double[] array) {
-        int length = array.length;
-
         Random random = new Random(noiseInfo.seed());
-        WhiteNoiseAlgorithm whiteNoise = new WhiteNoiseAlgorithm(random);
-
-        double scale = noiseInfo.scale();
-        int octaves = noiseInfo.octaves();
-        double lacunarity = noiseInfo.lacunarity();
-        double persistence = noiseInfo.persistence();
-
-        for (int x = 0; x < length; x++) {
-            double noiseValue = 0;
-            double amplitude = 1.0;
-            double frequency = scale;
-
-            for (int octave = 0; octave < octaves; octave++) {
-                noiseValue += whiteNoise.noise((x + noiseInfo.seed()) / frequency, 0) * amplitude;
-                amplitude *= persistence;
-                frequency *= lacunarity;
-            }
-
-            array[x] = noiseValue;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextDouble() * 2 - 1;
         }
     }
 
     private void write2D(double[][] array) {
-        int width = array.length;
-        int height = array[0].length;
-
         Random random = new Random(noiseInfo.seed());
-        WhiteNoiseAlgorithm whiteNoise = new WhiteNoiseAlgorithm(random);
-
-        double scale = noiseInfo.scale();
-        int octaves = noiseInfo.octaves();
-        double lacunarity = noiseInfo.lacunarity();
-        double persistence = noiseInfo.persistence();
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                double noiseValue = 0;
-                double amplitude = 1.0;
-                double frequency = scale;
-
-                for (int octave = 0; octave < octaves; octave++) {
-                    noiseValue += whiteNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed()) / frequency) * amplitude;
-                    amplitude *= persistence;
-                    frequency *= lacunarity;
-                }
-
-                array[x][y] = noiseValue;
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array[x].length; y++) {
+                array[x][y] = random.nextDouble() * 2 - 1;
             }
         }
     }
 
     private void write3D(double[][][] array) {
-        int width = array.length;
-        int height = array[0].length;
-        int depth = array[0][0].length;
-
         Random random = new Random(noiseInfo.seed());
-        WhiteNoiseAlgorithm whiteNoise = new WhiteNoiseAlgorithm(random);
-
-        double scale = noiseInfo.scale();
-        int octaves = noiseInfo.octaves();
-        double lacunarity = noiseInfo.lacunarity();
-        double persistence = noiseInfo.persistence();
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                for (int z = 0; z < depth; z++) {
-                    double noiseValue = 0;
-                    double amplitude = 1.0;
-                    double frequency = scale;
-
-                    for (int octave = 0; octave < octaves; octave++) {
-                        noiseValue += whiteNoise.noise((x + noiseInfo.seed()) / frequency, (y + noiseInfo.seed() + z) / frequency) * amplitude;
-                        amplitude *= persistence;
-                        frequency *= lacunarity;
-                    }
-
-                    array[x][y][z] = noiseValue;
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array[x].length; y++) {
+                for (int z = 0; z < array[x][y].length; z++) {
+                    array[x][y][z] = random.nextDouble() * 2 - 1;
                 }
             }
         }
     }
-
-
 }

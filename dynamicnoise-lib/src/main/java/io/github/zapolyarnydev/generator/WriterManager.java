@@ -1,9 +1,6 @@
 package io.github.zapolyarnydev.generator;
 
-import io.github.zapolyarnydev.info.PerlinNoiseInfo;
-import io.github.zapolyarnydev.info.SimplexNoiseInfo;
-import io.github.zapolyarnydev.info.ValueNoiseInfo;
-import io.github.zapolyarnydev.info.WhiteNoiseInfo;
+import io.github.zapolyarnydev.info.*;
 import io.github.zapolyarnydev.noise.Noise;
 import io.github.zapolyarnydev.noise.perlin.PerlinNoise;
 import io.github.zapolyarnydev.noise.simplex.SimplexNoise;
