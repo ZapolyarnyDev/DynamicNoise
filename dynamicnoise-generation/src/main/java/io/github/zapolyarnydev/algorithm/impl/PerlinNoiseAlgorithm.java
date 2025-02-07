@@ -65,4 +65,9 @@ public class PerlinNoiseAlgorithm implements NoiseAlgorithm {
 
         return lerp(x1, x2, v);
     }
+
+    @Override
+    public double noise(double x, double y, double z) {
+        return 0;
+    }
 }

@@ -58,6 +58,11 @@ public class ValueNoiseAlgorithm implements NoiseAlgorithm {
         return lerp(x1, x2, v);
     }
 
+    @Override
+    public double noise(double x, double y, double z) {
+        return 0;
+    }
+
     private double value(int hash, double x, double y) {
         int h = hash & 15;
         return (h < 8 ? x : y);
